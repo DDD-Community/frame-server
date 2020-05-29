@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import django_heroku
 
+from frame.settings.secrets import load_secrets
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,28 +23,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# TODO(sudosubin): Make to load from secrets.json file.
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'frame-server.herokuapp.com'
-]
+SECRET_KEY = load_secrets('SECRET_KEY')
+SETTINGS_MODE = os.environ.get('SETTINGS_MODE', 'local')
+SERVER_SOFTWARE = os.environ.get('SERVER_SOFTWARE', '')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # django rest framework apps
+    'rest_framework',
+
+    # frame apps
+    'account.apps.AccountConfig',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,15 +80,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'frame.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+# Settings mode local
+if SETTINGS_MODE == 'local':
+    from frame.settings.modes.local import *
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# Settings mode dev
+if SETTINGS_MODE == 'dev':
+    from frame.settings.modes.devel import *
 
 
 # Password validation

@@ -122,6 +122,9 @@ dmypy.json
 # static directory
 staticfiles/
 
+# secret file
+secret.json
+
 # End of https://www.gitignore.io/api/django
 
 
