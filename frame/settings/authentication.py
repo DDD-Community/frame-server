@@ -28,8 +28,23 @@ ACCOUNT_USERNAME_REQUIRED = False
 # Registration with email, instead of username
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
-    "django.contrib.auth.backends.ModelBackend",
+    'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+# JET Enable
+REST_USE_JWT = True
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_HANDLER': 'account.utils.jwt_payload_handler',
+    'JWT_ALLOW_REFRESH': True,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
