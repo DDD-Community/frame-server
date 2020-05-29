@@ -42,11 +42,19 @@ INSTALLED_APPS = [
 
     # django rest framework apps
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    # django allauth apps
+    'allauth',
+    'allauth.account',
 
     # frame apps
     'account.apps.AccountConfig',
     'core.apps.CoreConfig',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +86,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'frame.wsgi.application'
+
+
+# User model class
+AUTH_USER_MODEL = 'frame_account.User'
 
 
 # Settings mode local
