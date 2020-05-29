@@ -42,19 +42,18 @@ INSTALLED_APPS = [
 
     # django rest framework apps
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-
-    # django allauth apps
-    'allauth',
-    'allauth.account',
 
     # frame apps
     'account.apps.AccountConfig',
     'core.apps.CoreConfig',
 ]
 
-SITE_ID = 1
+
+# Authentication settings
+
+from frame.settings.authentication import *
+INSTALLED_APPS += AUTHENTICATION_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
