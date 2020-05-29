@@ -14,6 +14,11 @@ SITE_ID = 1
 # Username settings override
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'uid'
 
+# Default rest-auth user detail serializer
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'account.serializers.UserSerializer'
+}
+
 # Email login
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
