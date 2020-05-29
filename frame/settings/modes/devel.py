@@ -11,11 +11,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 if SERVER_SOFTWARE == 'Heroku':
-    ALLOWED_HOSTS += ['frame-server.herokuapp.com',]
+    ALLOWED_HOSTS.append('frame-server.herokuapp.com')
 
 if SERVER_SOFTWARE == '':
     from frame.settings.modes.local import ALLOWED_HOSTS as LOCAL_ALLOWED_HOSTS
-    ALLOWED_HOSTS += LOCAL_ALLOWED_HOSTS
+    ALLOWED_HOSTS.extend(LOCAL_ALLOWED_HOSTS)
 
 
 # Database

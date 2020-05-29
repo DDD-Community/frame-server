@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 # Authentication settings
 
 from frame.settings.authentication import *
-INSTALLED_APPS += AUTHENTICATION_APPS
+INSTALLED_APPS.extend(AUTHENTICATION_APPS)
 
 
 MIDDLEWARE = [
