@@ -1,0 +1,11 @@
+build:
+  docker:
+    'frame-server': Dockerfile
+
+run:
+  'frame-server': gunicorn frame.wsgi:application --bind 0.0.0.0:$80
+
+release:
+  image: 'frame-server'
+  command:
+    - bash -c ''
