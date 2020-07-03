@@ -1,7 +1,6 @@
 import os
 
 from frame.settings import BASE_DIR
-from frame.settings.secrets import load_secrets
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
