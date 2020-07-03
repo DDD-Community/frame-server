@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import json
 import django_heroku
 
 from frame.settings.secrets import load_secrets
+from google.oauth2 import service_account
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 
     # frame apps
     'account.apps.AccountConfig',
+    'banner.apps.BannerConfig',
     'core.apps.CoreConfig',
 ]
 
@@ -142,6 +146,14 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+)
+
+# Google Cloud Storage
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'frame-server'
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_info(
+    json.loads(load_secrets('GCS_CREDENTIALS')),
 )
 
 # Activate Django-Heroku.
