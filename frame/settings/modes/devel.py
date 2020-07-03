@@ -1,6 +1,6 @@
 import os
 
-from frame.settings import SERVER_SOFTWARE
+from frame.settings import SERVER_SERVICE
 from frame.settings.secrets import load_secrets
 
 
@@ -10,10 +10,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-if SERVER_SOFTWARE == 'Heroku':
+if SERVER_SERVICE == 'Heroku':
     ALLOWED_HOSTS.append('frame-server.herokuapp.com')
 
-if SERVER_SOFTWARE == '':
+if SERVER_SERVICE == '':
     from frame.settings.modes.local import ALLOWED_HOSTS as LOCAL_ALLOWED_HOSTS
     ALLOWED_HOSTS.extend(LOCAL_ALLOWED_HOSTS)
 

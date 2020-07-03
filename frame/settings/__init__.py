@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = load_secrets('SECRET_KEY')
 SETTINGS_MODE = os.environ.get('SETTINGS_MODE', 'local')
-SERVER_SOFTWARE = os.environ.get('SERVER_SOFTWARE', '')
+SERVER_SERVICE = os.environ.get('SERVER_SERVICE', '')
 
 
 # Application definition
