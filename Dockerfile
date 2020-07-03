@@ -25,4 +25,4 @@ RUN poetry install --no-dev
 COPY . ./
 
 # run gunicorn
-CMD poetry run gunicorn frame.wsgi:application --bind 0.0.0.0:8000
+CMD poetry run gunicorn frame.wsgi:application --bind 0.0.0.0:$PORT

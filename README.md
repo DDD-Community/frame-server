@@ -20,8 +20,8 @@ poetry run ./manage.py runserver 0.0.0.0:8000
 
 # using docker
 docker build -t frame-server .
-docker run -d -p 8000:8000 frame-server:latest
-docker run -it -p 8000:8000 frame-server:latest bash
+docker run -d -e "PORT=8000" -p 8000:8000 frame-server:latest
+docker run -it -e "PORT=8000" -p 8000:8000 frame-server:latest bash
 ```
 
 
