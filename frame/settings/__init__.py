@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import json
-import django_heroku
 
 from frame.settings.secrets import load_secrets
 from google.oauth2 import service_account
@@ -155,6 +154,3 @@ GS_BUCKET_NAME = 'frame-server'
 GS_CREDENTIALS = service_account.Credentials.from_service_account_info(
     json.loads(load_secrets('GCS_CREDENTIALS')),
 )
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
