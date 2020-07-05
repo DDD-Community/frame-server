@@ -5,7 +5,7 @@ from frame.settings.secrets import load_secrets
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', '').lower() == 'true'
 
 
 ALLOWED_HOSTS = []

@@ -4,7 +4,7 @@ from frame.settings import BASE_DIR
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', '').lower() == 'true'
 
 
 ALLOWED_HOSTS = [

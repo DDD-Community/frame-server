@@ -3,7 +3,10 @@ from typing import Tuple
 
 from django.utils import timezone
 
+from core.utils.typing import typechecking
 
+
+@typechecking
 def default_start_end_date() -> Tuple[datetime, datetime]:
     """
     기본적인 start_date(시작 시간)와 end_date(종료 시간)을 반환합니다.
